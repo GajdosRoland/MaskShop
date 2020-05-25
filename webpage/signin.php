@@ -1,3 +1,4 @@
+<?php include('sessions.php') ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,6 +8,8 @@
     <meta name="author" content="">
     <meta name="generator" content="Jekyll v4.0.1">
     <title>Mask Shop</title>
+
+<!--    <script src="../js/script.js"></script>-->
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/starter-template/">
 
@@ -57,7 +60,38 @@
         </ul>
     </div>
 </nav>
+
+<form id="reg_form" action="signin.php" method="post">
+    <?php include('errors.php'); ?>
+    <div class="container">
+        <div>
+            <label for="username">Username</label><br>
+            <input type="text" name="username" id="username"><span id="username_error" class="error"></span><br>
+        </div>
+        <div>
+            <label for="email">Email</label><br>
+            <input type="email" name="email" id="email"><span id="email_error" class="error"></span><br>
+        </div>
+        <div>
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="password"><span id="password_error" class="error"></span><br><br>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" name="signin">Regisztrálok</button>   <input type="reset" value="Mégse" class="btn btn-primary"><br><br>
+        </div>
+        <p>
+            Már tag? <a href="login.php">Bejelentkezés</a>
+        </p>
+    </div>
+</form>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+<footer class="card-footer">
+    <p>Copyright &copy Gajdos Roland 2020</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
 </body>
 </html>

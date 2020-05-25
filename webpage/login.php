@@ -1,3 +1,4 @@
+<?php include('sessions.php') ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -59,5 +60,29 @@
 </nav>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+
+<form method="post" action="login.php">
+    <?php include('errors.php'); ?>
+    <div class="container">
+        <div class="">
+            <label>Felhasználónév</label><br>
+            <input type="text" name="username" >
+        </div>
+        <div class="">
+            <label>Jelszó</label><br>
+            <input type="password" name="password"><br><br>
+        </div>
+        <div class="">
+            <button type="submit" class="btn btn-primary" name="login_user">Bejelentkezés</button>
+        </div>
+    </div>
+</form>
+
+<footer class="card-footer">
+    <p>Copyright &copy Gajdos Roland 2020</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
 </body>
 </html>

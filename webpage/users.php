@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['admin_name'])) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: adminlogin.php');
+}
+if (isset($_GET['adminlogout'])) {
+    session_destroy();
+    unset($_SESSION['admin_name']);
+    header("location: login.php");
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,25 +53,53 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Mask Shop</a>
+                <a class="nav-link" href="index3.php">Mask Shop</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="orders.php">Rendelések</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="products.php">Termékeink</a>
+                <a class="nav-link" href="users.php">Felhasználók</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="history.php">Maszkok története</a>
+                <a class="nav-link" href="insert.php">Feltöltés</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="login.php">Bejelentkezés</a>
+                <a class="nav-link" href="delete.php">Termék törlés</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="signin.php">Regisztráció</a>
+                <a class="nav-link" href="adminlogout.php">Kijelentkezés</a>
             </li>
         </ul>
     </div>
 </nav>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+
+<div class="container">
+    <h1 class="display-4">Felhasználók</h1>
+</div>
+
+<?php
+include("db_config.php");
+$sql = "SELECT * FROM users ";
+
+$result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+if (mysqli_num_rows($result)>0)
+{
+
+    while ($record = mysqli_fetch_array($result)) {
+        echo"
+              <div class=\"container\"><h4>$record[username]</h4></div>
+			  <div class=\"container\"><h4>$record[email]</h4></div>
+
+			  <hr>
+			  </div>";
+
+    }
+}
+?>
+
 <footer class="card-footer">
     <p>Copyright &copy Gajdos Roland 2020</p>
     <p>

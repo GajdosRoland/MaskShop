@@ -1,3 +1,4 @@
+<?php include('sessions.php') ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,10 +40,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="index.php">Mask Shop</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="products.php">Termékeink</a>
             </li>
             <li class="nav-item">
@@ -59,6 +60,24 @@
 </nav>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+
+<form method="post" action="adminlogin.php">
+    <?php include('errors.php'); ?>
+    <div class="container">
+        <div class="">
+            <label>Felhasználónév</label><br>
+            <input type="text" name="admin_name" >
+        </div>
+        <div class="">
+            <label>Jelszó</label><br>
+            <input type="password" name="pw"><br><br>
+        </div>
+        <div class="">
+            <button type="submit" class="btn btn-primary" name="login_admin">Bejelentkezés</button>
+        </div>
+    </div>
+</form>
+
 <footer class="card-footer">
     <p>Copyright &copy Gajdos Roland 2020</p>
     <p>
