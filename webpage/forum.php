@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['admin_name'])) {
+if (!isset($_SESSION['username'])) {
     $_SESSION['msg'] = "You must log in first";
-    header('location: adminlogin.php');
+    header('location: login.php');
 }
-if (isset($_GET['adminlogout'])) {
+if (isset($_GET['logout'])) {
     session_destroy();
-    unset($_SESSION['admin_name']);
+    unset($_SESSION['username']);
     header("location: login.php");
 }
 ?>
@@ -25,6 +25,7 @@ if (isset($_GET['adminlogout'])) {
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/style.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -53,22 +54,19 @@ if (isset($_GET['adminlogout'])) {
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index3.php">Mask Shop</a>
+                <a class="nav-link" href="index2.php">Mask Shop</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="orders.php">Rendelések</a>
+                <a class="nav-link" href="products2.php">Termékeink</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="order.php">Rendelés</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="users.php">Felhasználók</a>
+                <a class="nav-link" href="forum.php">Kibeszélő</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="insert.php">Feltöltés</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="delete.php">Termék törlés</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="adminlogout.php">Kijelentkezés</a>
+                <a class="nav-link" href="logut.php">Kijelentkezés</a>
             </li>
         </ul>
     </div>
@@ -77,12 +75,14 @@ if (isset($_GET['adminlogout'])) {
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
 
 <div class="container">
-    <h1 class="display-4">Felhasználók</h1>
+    <h2 class="display-4" align="center">Írja meg véleményét az oldalunkról.</h2><br>
 </div>
+
+
 
 <?php
 include("db_config.php");
-$sql = "SELECT * FROM users ";
+$sql = "SELECT * FROM forum ORDER BY id DESC";
 
 $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 if (mysqli_num_rows($result)>0)
@@ -90,13 +90,50 @@ if (mysqli_num_rows($result)>0)
 
     while ($record = mysqli_fetch_array($result)) {
         echo"
-              <div class=\"container\"><h4>$record[username]</h4></div>
-			  <div class=\"container\"><h4>$record[email]</h4></div>
+              <table width=\"500px\" cellspacing=\"0\" align=\"center\" border=\"3\">
 
-			  <hr>
-			  </div>";
+    <tr>
+        <th>$record[comment]</th><br>
+    </tr>
+
+</table><br>";
 
     }
+}
+?>
+
+<form action="forum.php" method="post">
+    <div class="container">
+        <br><div><h3>Hozzászólás írása</h3></div><div><h4><textarea name="comment"></textarea></h4></div>
+        <div><input type="submit" value="Hozzászólás" class="btn btn-primary" name="send">   <input type="reset" value="Mégse" class="btn btn-primary"></div>
+    </div>
+</form>
+
+<?php
+
+if(isset($_POST['comment']))
+{
+    $comment=$_POST['comment'];
+}
+
+
+if(!empty($comment)){
+
+    $sql = "INSERT INTO forum(comment) VALUES('$comment')";
+
+    $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+
+    if(mysqli_affected_rows($connection)>0){
+
+        header("Location:index2.php");
+        exit();
+    }
+
+    else
+        echo "Sikertelen feltöltés!";
+
+    mysqli_close($connection);
+
 }
 ?>
 

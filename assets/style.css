@@ -1,0 +1,13 @@
+th{
+    text-align: center;
+    vertical-align: middle;
+    max-width: 500px;
+}
+td{
+    text-align: center;
+    vertical-align: middle;
+}
+textarea{
+    width: 500px;
+    height: 150px;
+}

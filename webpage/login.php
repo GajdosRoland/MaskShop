@@ -34,7 +34,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Mask Shop</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -64,6 +64,7 @@
 <form method="post" action="login.php">
     <?php include('errors.php'); ?>
     <div class="container">
+        <h1 class="display-4">Bejelentkezés</h1><br>
         <div class="">
             <label>Felhasználónév</label><br>
             <input type="text" name="username" >
@@ -73,7 +74,7 @@
             <input type="password" name="password"><br><br>
         </div>
         <div class="">
-            <button type="submit" class="btn btn-primary" name="login_user">Bejelentkezés</button>
+            <button type="submit" class="btn btn-primary" name="login_user">Bejelentkezés</button><br><br><br><br><br><br><br><br><br><br><br>
         </div>
     </div>
 </form>

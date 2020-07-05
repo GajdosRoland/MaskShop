@@ -26,6 +26,8 @@ if (isset($_GET['adminlogout'])) {
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.css" rel="stylesheet">
 
+
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -43,10 +45,12 @@ if (isset($_GET['adminlogout'])) {
         }
     </style>
     <link href="starter-template.css" rel="stylesheet">
+
+
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Mask Shop</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -75,6 +79,44 @@ if (isset($_GET['adminlogout'])) {
 </nav>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container">
+    <h1 class="display-4" align="center">Termék törlés</h1>
+</div>
+
+<div class="container" align="center">
+    <label for="mask">Maszk neve</label><br>
+    <input type="text" name="mask" id="mask" autocomplete="off">
+    <div id="results"></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#mask").keyup(function(){
+            var query = $(this).val();
+            if (query != "") {
+                $.ajax({
+                    url: 'deleteq.php',
+                    method: 'POST',
+                    data: {query:query},
+                    success: function(data)
+                    {
+                        $('#results').html(data);
+                        $('#results').css('display', 'block');
+                        $("#country").focusout(function(){
+                            $('#results').css('display', 'none');
+                        });
+                        $("#country").focusin(function(){
+                            $('#results').css('display', 'block');
+                        });
+                    }
+                });
+            } else {
+                $('#results').css('display', 'none');
+            }
+        });
+    });
+</script>
 
 <footer class="card-footer">
     <p>Copyright &copy Gajdos Roland 2020</p>

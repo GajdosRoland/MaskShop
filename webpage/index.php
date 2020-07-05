@@ -33,7 +33,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Mask Shop</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -59,6 +59,43 @@
 </nav>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+
+<div class="container">
+    <h1 class="display-4">Üdvözöljük a Mask Shop weboldalán!</h1>
+    <h2 class="display-5">Találja meg az önnek megfelelő maszkot és vásároljon tőlünk a legjobb áron és legjobb minőségben!</h2>
+</div>
+
+<div class="container" style="max-width:1050px max-weight:200px align:center">
+    <img class="mySlides" src="../pictures/egszerum.jpg" style="width:100% weight:50%">
+    <img class="mySlides" src="../pictures/filterm.jpg" style="width:100% weight:50%">
+    <img class="mySlides" src="../pictures/workmask.jpg" style="width:100% weight:50%">
+    <img class="mySlides" src="../pictures/divingmask.jpg" style="width:100% weight:50%"><br><br>
+</div>
+
+<fieldset class="container">
+    <legend>Elérhetőségeink:</legend>
+
+    <p>E-mail: info@maskshop.hu</p>
+    <p>Telefon: 021 69 19 387 / 069 1995 222</p>
+    <p>Cím: Marka Oreškovića 16, Szabadka</p>
+</fieldset>
+
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}
+        x[myIndex-1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+    }
+</script>
 
 <footer class="card-footer">
     <p>Copyright &copy Gajdos Roland 2020</p>

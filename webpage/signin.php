@@ -36,7 +36,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Mask Shop</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -64,29 +64,31 @@
 <form id="reg_form" action="signin.php" method="post">
     <?php include('errors.php'); ?>
     <div class="container">
+        <h1 class="display-4">Regisztráció</h1><br>
         <div>
-            <label for="username">Username</label><br>
+            <label for="username">Felhasználónév</label><br>
             <input type="text" name="username" id="username"><span id="username_error" class="error"></span><br>
         </div>
         <div>
             <label for="email">Email</label><br>
-            <input type="email" name="email" id="email"><span id="email_error" class="error"></span><br>
+            <input type="text" name="email" id="email"><span id="email_error" class="error"></span><br>
         </div>
         <div>
-            <label for="password">Password</label><br>
+            <label for="password">Jelszó</label><br>
             <input type="password" name="password" id="password"><span id="password_error" class="error"></span><br><br>
         </div>
         <div>
-            <button type="submit" class="btn btn-primary" name="signin">Regisztrálok</button>   <input type="reset" value="Mégse" class="btn btn-primary"><br><br>
+            <input type="submit" class="btn btn-primary" name="signin" value="Regisztrálok">   <input type="reset" value="Mégse" class="btn btn-primary"><br><br>
         </div>
         <p>
-            Már tag? <a href="login.php">Bejelentkezés</a>
+            Már tag? <a href="login.php">Bejelentkezés</a><br><br><br><br><br><br>
         </p>
     </div>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+<!--<script src="../js/script.js"></script>-->
 <footer class="card-footer">
     <p>Copyright &copy Gajdos Roland 2020</p>
     <p>

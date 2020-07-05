@@ -46,7 +46,7 @@ if (isset($_GET['adminlogout'])) {
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Mask Shop</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -79,12 +79,13 @@ if (isset($_GET['adminlogout'])) {
 <div class="container">
     <h1 class="display-4">Termék feltöltés</h1>
 </div>
-<form action="insert.php" method="post">
+<form action="insert.php" method="post" enctype="multipart/form-data">
     <div class="container">
         <div><h3>Maszk neve</h3></div><div><h4><input type="text" name="name"></h4></div>
         <div><h3>Maszk típusa</h3></div><div><h4><input type="text" name="type"></h4></div>
         <div><h3>Maszk ára</h3></div><div><h4><input type="text" name="price"></h4></div>
         <div><h3>Raktáron</h3></div><div><h4><input type="text" name="in_stock"></h4></div>
+<!--        <div><h3>Kép</h3></div><div><h4><input type="file" name="image"></h4></div>-->
         <div><h3>Leírás</h3></div><div><h4><textarea name="description"></textarea></h4></div>
         <div><input type="submit" value="Küldés" class="btn btn-primary" name="send">   <input type="reset" value="Mégse" class="btn btn-primary"></div>
     </div>
@@ -115,11 +116,18 @@ if(isset($_POST['description']))
 {
     $description=$_POST['description'];
 }
+//if(isset($_POST['image']))
+//{
+//
+//    $image = $_FILES['image']['name'];
+//
+//    $target = "pictures/".basename($image);
+//}
 
 if(!empty($name)&&!empty($type)&&!empty($price)&&!empty($in_stock)&&!empty($description)){
     include("db_config.php");
     $sql = "INSERT INTO masks(name,type,price,in_stock,description) VALUES('$name','$type','$price','$in_stock','$description')";
-
+//    move_uploaded_file($_FILES['image']['tmp_name'], $target);
     $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 
     if(mysqli_affected_rows($connection)>0){

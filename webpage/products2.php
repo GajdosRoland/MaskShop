@@ -25,6 +25,7 @@ if (isset($_GET['logout'])) {
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="../assets/style.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -46,7 +47,7 @@ if (isset($_GET['logout'])) {
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Mask Shop</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -59,6 +60,12 @@ if (isset($_GET['logout'])) {
                 <a class="nav-link" href="products2.php">Termékeink</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="order.php">Rendelés</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="forum.php">Kibeszélő</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="logut.php">Kijelentkezés</a>
             </li>
         </ul>
@@ -66,6 +73,45 @@ if (isset($_GET['logout'])) {
 </nav>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
+
+<div class="container">
+    <h1 class="display-4" align="center">Termékeink</h1><br>
+</div>
+
+<?php
+include("db_config.php");
+$sql = "SELECT * FROM masks";
+
+$result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
+if (mysqli_num_rows($result)>0)
+{
+
+    while ($record = mysqli_fetch_array($result)) {
+        echo"
+              <table width=\"500px\" cellspacing=\"0\" align=\"center\" border=\"3\">
+    <tr>
+        <td><img src =\"$record[image]\" /></td>
+    </tr>
+    <tr>
+        <th>$record[name]</th>
+    </tr>
+    <tr>
+        <th>$record[type]</th>
+    </tr>
+    <tr>
+        <th>$record[price] din/drb</th>
+    </tr>
+    <tr>
+        <th>$record[description]</th>
+    </tr>
+    <tr>
+        <th><a href='order.php'>Rendelés</a> </th>
+    </tr>
+</table><br>";
+
+    }
+}
+?>
 
 <footer class="card-footer">
     <p>Copyright &copy Gajdos Roland 2020</p>
